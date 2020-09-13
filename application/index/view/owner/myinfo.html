@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>精品VIP卡•完善个人基本信息</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <link rel="stylesheet" href="__STATIC__/index/index/css/account-register.css">
+    <link rel="stylesheet" href="__STATIC__/index/index/css/mobile-style.css">
+
+    <script src="__STATIC__/index/js/jquery.js"></script>
+    <script src="__STATIC__/index/js/jquery.form.min.js"></script>
+
+    <script src="__STATIC__/common/layer/layer.js"></script>
+
+</head>
+<body>
+<div class="register">
+    <div class="signin-logo">
+        <img src="{$data.uImg}" alt="">
+    </div>
+    <!--action="{$Think.config.url}/account/login"-->
+    <form id="loginForm" action="{$Think.config.url}/myinfo" method="post" onsubmit="return formsubmit()">
+        <div class="list">
+            <div class="wrap" >
+                <label style="display: inline-block;width: 18%">昵称：</label>
+                <input id="nickname" class="password" value="{$data.nickname}" type="text"  style="width: 70%;" name="nickname" placeholder="输入昵称">
+            </div>
+        </div>
+        <div class="list">
+            <div class="wrap">
+                <label style="display: inline-block;width: 18%">手机号：</label>
+                <input class="phone" id="utel" type="tel" name="utel" value="{$data.utel}"   style="width: 70%;" placeholder="输入手机号">
+            </div>
+        </div>
+
+        <div class="list">
+            <div class="wrap" >
+                <label style="display: inline-block;width: 18%">微信号：</label>
+                <label   style="display: inline-block;width: 100%;">{$data.openid}</label>
+            </div>
+        </div>
+
+
+        <button class="submit checkPass">提交</button>
+    </form>
+
+</div>
+{include file="index/public/footer" /}
+</body>
+<script>
+    var imgsrc = "{:captcha_src()}";//验证图片src
+    var url = "{$Think.config.url}";
+</script>
+<script src="__STATIC__/index/js/hm_lwj.js"></script>
+<script src="__STATIC__/common/index/dialog.js"></script>
+<script>
+    function formsubmit(){
+
+        $.ajax({
+            url:"{$Think.config.url}/myinfo",
+            data:{
+                nickname:$("#nickname").val(),
+                utel:$("#utel").val()
+            },
+            success:function(data){
+                console.log(data);
+                if(data==0){
+                    alert('修改成功！')
+                    setTimeout(function(){
+                        window.location.reload();
+                    },2000);
+                }else if(data==1){
+
+                    alert('填写有错误，请继续填写！')
+                }
+            }
+        })
+
+        return false;
+    }
+
+</script>
+
+
+<!--<script src="__STATIC__/common/index/common.js"></script>-->
+<!--<script src="__STATIC__/common/index/dialog.js"></script>-->
+<!--<script src="__STATIC__/index/user/js/login.js"></script>-->
+</html>

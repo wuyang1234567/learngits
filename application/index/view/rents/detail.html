@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+
+        {$dataSourcesTop.rtitle}
+
+    </title>
+    <link rel="stylesheet" href="__STATIC__/index/index/css/mobile-style.css">
+    <link rel="stylesheet" href="__STATIC__/index/details/css/new-rentdetail.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <style>
+        .new-rentdetail header{
+            border:2px solid red;
+        }
+    </style>
+</head>
+<body>
+    <div class="new-rentdetail">
+
+        <!--swiper-->
+        {include file="../application/index/view/index/public/slider.html" /}
+        <!--swiper end-->
+
+
+            <div class="brief-info">
+                <h2 class="title">{$dataSourcesTop.rtitle}</h2>
+
+                <p>
+                    <span class="price" >{$dataSourcesTop.rprice}</span>
+                    <span class="price_unit">元/月</span>
+                <div>
+                    {if $dataSourcesTop.beginTime neq ""}
+
+                    <span class="prize">活动开始时间：</span>{$dataSourcesTop.beginTime}<br> <span class="prize">活动结束时间：</span>{$dataSourcesTop.endTime}</span>
+                    {/if}
+                </div>
+                <div>
+                    {if $dataSourcesTop.name eq "活动"}
+                    {if $dataSourcesTop.over neq ""}
+                    <span style="color: green">活动结束</span>
+                    {/if}
+                    {/if}
+                </div>
+                </p>
+
+            </div>
+
+            <div class="house-info">
+                <div class="house">
+                    <!--<div class="icon-area"></div>-->
+                    {$dataSourcesTop.content}
+                </div>
+
+
+            </div>
+
+
+
+            {if $dataSourcesTop.name eq "活动"}
+            {if $dataSourcesTop.over eq ""}
+                <a class="linkPerson buy"  >
+                    <i class="tel-icon"></i>
+                        购买此VIP卡
+                </a>
+            {/if}
+            {/if}
+
+            {if $dataSourcesTop.name neq "活动"}
+                <a class="linkPerson buy"  >
+                    <i class="tel-icon"></i>
+                    购买此VIP卡
+                </a>
+            {/if}
+
+
+        <!--<a class="linkPerson" href="tel:18301070519">-->
+            <!--<i class="tel-icon"></i>咨询经纪人-->
+        <!--</a>-->
+    </div>
+    {include file="index/public/weixin" /}
+    {include file="index/public/footer" /}
+
+<script>
+    var buyBtn=$(".buy");
+    buyBtn.click(function(){
+        var price=$(".price").html();
+        var title=$(".title").html();
+        var arr=location.href.split("/");
+//        for(var i=0;i<arr.length;i++){
+//            alert(arr[i]);
+//        }
+        var _id=arr[8];
+//        alert(_id);
+        console.log(price+"----"+_id);
+        location.href="{$Think.config.url}/weixinpay/id/"+_id;
+    })
+</script>
+
+</body>
+</html>

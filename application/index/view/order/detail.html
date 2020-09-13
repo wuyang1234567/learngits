@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>精品VIP卡•我的</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+
+    <link rel="stylesheet" href="__STATIC__/index/index/css/mobile-style.css">
+    <link rel="stylesheet" href="__STATIC__/index/index/css/account-user.css">
+</head>
+<body style="background-color: #f7f6f6;">
+<div class="usercenter">
+
+
+    <div class="action-group">
+        <!--<a class="action-item clearfix" href="login">-->
+        <!--<div class="icon collect"></div>-->
+        <!--<div class="name">我的收藏<i></i></div>-->
+        <!--</a>-->
+        <a class="action-item clearfix" >
+            <div class="icon contract"></div>
+            <div class="name"><h3>订单号:{$data['tradeNo']}</h3><i></i></div>
+        </a>
+        <!--<a class="action-item clearfix" href="login">-->
+        <!--<div class="icon setting"></div>-->
+        <!--<div class="name">个人设置<i></i></div>-->
+        <!--</a>-->
+    </div>
+    <div class="action-group">
+        <a class="action-item clearfix" >
+            <div class="icon contract"></div>
+            <div class="name" >
+
+                <span >商品：<span class="title">{$data.rtitle}</span>;</span>
+
+
+            </div>
+        </a>
+        <a class="action-item clearfix" >
+            <div class="icon contract"></div>
+            <div class="name" >
+
+                <span > 订单价格：<span class="title">{$data.price}</span>;</span>
+
+
+            </div>
+        </a>
+        <a class="action-item clearfix" >
+            <div class="icon contract"></div>
+            <div class="name" >
+
+                <span > 购买时间：<span class="title">{$data.time}</span>;</span>
+
+            </div>
+        </a>
+        <a class="action-item clearfix" >
+            <div class="icon contract"></div>
+            <div class="name" >
+
+                <span > 联系人及方式：<span class="title">{$data.addr_name}；电话：{$data.addr_tel}</span>;</span>
+
+            </div>
+        </a>
+        <a class="action-item clearfix" >
+            <div class="icon contract"></div>
+            <div class="name" >
+
+                <span > 邮寄地址：<span class="title">{$data.ar_provinves}{$data.addr_detailed}</span>;</span>
+
+            </div>
+        </a>
+
+        <a class="action-item clearfix" >
+
+            <div class="name" >
+                {if $data['status'] eq 0}
+                <button style="color: red" class="pay" index="{$data['tradeNo']}">未付款,点击继续付款</button>
+                {else}
+                <span >已付款</span>
+                {/if}
+            </div>
+        </a>
+
+
+
+    </div>
+</div>
+
+<!--footer -->
+{include file="index/public/footer" /}
+<!--footer end-->
+
+</body>
+<script>
+var paybtn=$(".pay");
+    paybtn.click(function(){
+        var _index=$(this).attr("index")+"R";
+        alert(_index)
+        location.href="{$Think.config.url}/weixinpay/id/"+_index;
+    })
+</script>
+</html>

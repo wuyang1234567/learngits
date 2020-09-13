@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<!-- saved from url=(0065)http://weixin.haojwt.com/web/Website/single-key/submit-order.html -->
+<html class="js cssanimations"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="description" content="">
+	    <meta name="keywords" content="">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>提交订单</title>
+		<link rel="stylesheet" href="__STATIC__/index/css/amazeui.min.css">
+		<link rel="stylesheet" href="__STATIC__/index/css/hm_lwj-2.css">
+	<style type="text/css">.picker{display:none;position:fixed;top:0;left: 0;z-index:100;width:100%;height:100%;overflow:hidden;text-align:center;font-family:PingFang SC,STHeitiSC-Light,Helvetica-Light,arial,sans-serif;font-size:14px;-moz-user-select:none;-webkit-user-select:none;-ms-user-select:none;user-select:none}.picker .picker-mask{position:absolute;z-index:500;width:100%;height:100%;transition:all .5s;-webkit-transition:all .5s;background:transparent;opacity:0}.picker .picker-mask.show{background:rgba(0,0,0,.6);opacity:1}.picker .picker-panel{position:absolute;z-index:600;bottom:0;width:100%;height:243px;background:#fff;transform:translateY(243px);-webkit-transform:translateY(243px);transition:all .5s;-webkit-transition:all .5s}.picker .picker-panel.show{transform:translateY(0);-webkit-transform:translateY(0)}.picker .picker-panel .picker-choose{position:relative;height:50px;color:#878787;font-size:14px}.picker .picker-panel .picker-choose .picker-title{line-height:50px;font-size:19px;text-align:center;color:#333}.picker .picker-panel .picker-choose .cancel,.picker .picker-panel .picker-choose .confirm{position:absolute;padding:10px;top:6px}.picker .picker-panel .picker-choose .confirm{right:0;color:#fa8919}.picker .picker-panel .picker-choose .cancel{left:0}.picker .picker-panel .picker-content{position:relative}.picker .picker-panel .picker-content .mask-bottom,.picker .picker-panel .picker-content .mask-top{position:absolute;z-index:10;width:100%;height:68px;pointer-events:none;transform:translateZ(0);-webkit-transform:translateZ(0)}.picker .picker-panel .picker-content .mask-top{top:0;background:-webkit-gradient(linear,left bottom,left top,from(hsla(0,0%,100%,.4)),to(hsla(0,0%,100%,.8)));background:-o-linear-gradient(bottom,hsla(0,0%,100%,.4),hsla(0,0%,100%,.8))}.picker .picker-panel .picker-content .mask-top:after,.picker .picker-panel .picker-content .mask-top:before{display:block;position:absolute;border-top:1px solid #ccc;left:0;width:100%;content:' '}.picker .picker-panel .picker-content .mask-top:before{display:none;top:0}.picker .picker-panel .picker-content .mask-top:after{display:block;bottom:0}.picker .picker-panel .picker-content .mask-bottom{bottom:0;background:-webkit-gradient(linear,left top,left bottom,from(hsla(0,0%,100%,.4)),to(hsla(0,0%,100%,.8)));background:-o-linear-gradient(top,hsla(0,0%,100%,.4),hsla(0,0%,100%,.8))}.picker .picker-panel .picker-content .mask-bottom:after,.picker .picker-panel .picker-content .mask-bottom:before{display:block;position:absolute;border-top:1px solid #ccc;left:0;width:100%;content:' '}.picker .picker-panel .picker-content .mask-bottom:before{display:block;top:0}.picker .picker-panel .picker-content .mask-bottom:after{display:none;bottom:0}.picker .picker-panel .wheel-wrapper{display:-ms-flexbox;display:-webkit-box;display:-webkit-flex;display:flex;padding:0 10px}.picker .picker-panel .wheel-wrapper .wheel{-ms-flex:1 1 1e-9px;-webkit-box-flex:1;-webkit-flex:1;flex:1;-webkit-flex-basis:1e-9px;flex-basis:1e-9px;width:1%;height:173px;overflow:hidden;font-size:21px}.picker .picker-panel .wheel-wrapper .wheel .wheel-scroll{margin-top:68px;line-height:36px}.picker .picker-panel .wheel-wrapper .wheel .wheel-scroll .wheel-item{height:36px;overflow:hidden;white-space:nowrap;color:#333}.picker .picker-footer{height:20px}@media (-webkit-min-device-pixel-ratio:1.5),(min-device-pixel-ratio:1.5){.border-1px:after,.border-1px:before{-webkit-transform:scaleY(.7);-webkit-transform-origin:0 0;transform:scaleY(.7)}.border-1px:after{-webkit-transform-origin:left bottom}}@media (-webkit-min-device-pixel-ratio:2),(min-device-pixel-ratio:2){.border-1px:after,.border-1px:before{-webkit-transform:scaleY(.5);transform:scaleY(.5)}}</style></head>
+	<body>
+		<header data-am-widget="header" class="am-header  am-header-default am-no-layout">
+		    <div class="am-header-left am-header-nav">
+		      <a href="javascript:" class="close"></a>
+		    </div>
+		    <h1 class="am-header-title">提交订单</h1>
+		</header>
+		<div class="container">
+			<div class="submit-order-wrap" id="userinfo" style="display: block;">
+				<div class="person-info">
+					<h4><em></em><i></i></h4>
+					<p></p>
+					<b></b>
+				</div>
+			</div>
+			<div class="submit-order" id="add" style="display: none;">
+				<div class="add-adress">
+					<span>您还没有编辑上门地址</span>
+					<a><img src="__STATIC__/index/img/jia.png"></a>
+				</div>
+			</div>
+			<div class="submit-order-wrap">
+				<div class="payment-amount am-cf">
+					<h4 id="goodsname">{$serviceArr.servicename}(立即预约)</h4>
+					<span class="price">￥<em id="unit-price">{$serviceArr.price}</em></span>
+					<div class="number">
+						<i class="jian"></i><b>1</b><i class="jia"></i>
+					</div>
+					<div class="total-price">
+						合计：￥<span>{$serviceArr.price}</span>
+					</div>
+				</div>
+			</div>
+			<div class="submit-order-wrap">
+				<div class="seller-message">
+					<a href="#">
+						<p>选择优惠券<span id="couponprice"></span><i></i></p>
+					</a>
+				</div>
+				<div class="seller-message-info">
+					<h4>买家留言</h4>
+					<textarea placeholder="填写对本次的交易说明" rows="3"></textarea>
+				</div>
+			</div>
+			<div class="submit-order-wrap" id="chose">
+				<div class="seller-message service-time">
+					<p>服务时间<time id="time"></time><i></i></p>
+				</div>
+			</div>
+		</div>
+		<div class="pay-order-footer am-g">
+			<div class="am-u-sm-8">
+				<span>合计：<em>￥<i>{$serviceArr.price}</i></em></span>
+			</div>
+			<div class="am-u-sm-4" id="j-submit">
+				<a>提交订单</a>
+			</div>
+		</div>
+	
+	<script type="text/javascript" src="__STATIC__/index/js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="__STATIC__/index/js/amazeui.min.js"></script>
+	<script type="text/javascript" src="__STATIC__/index/js/picker.min.js"></script>
+	<script type="text/javascript" src="__STATIC__/index/js/hm_lwj.js"></script>
+	<script>
+		$(function(){
+			//提交订单
+			$("#j-submit").on("click",function(){
+//				if(addressid==""){
+//					mask("请编辑上门地址");
+//					return false;
+//				}
+//				if($("#time").html()==""){
+//					mask("请选择服务时间");
+//					return false;
+//				}
+//				if($("textarea").val()==""){
+//					$("textarea").val("无");
+//				}
+				var count=$(".number b").html();
+				//商店名称以及服务名称
+				var servicename="";
+				servicename="{$serviceArr.servicename}";
+				var shopname="";
+				shopname="{$shopname}";
+				//订单金额
+				var price=$(".total-price").find("span").html();
+				var _orderId="";
+
+				postAjax("{:url('index/order/submitorder')}",{"userid":"","serviceid":good_id,"address_id":1,"coupon_id":0,"service_time":"111","message":$("textarea").val(),"count":count,"type":1,"price":price},addorderCallback1);
+				function addorderCallback1(data){
+					if(data!=null){
+						mask("提交成功");
+						_orderId=data;
+						window.location.href="{:url('index/order/payorder')}?orderId="+_orderId+"&shopname="+shopname+"&servicename="+servicename+"&totalprice="+totalnum;
+					}else{
+						mask("提交失败");
+					}
+				}
+
+				return;
+				if(couponid==null){
+					postAjax("{:url('index/order/submitorder')}",{"userid":userid,"serviceid":good_id,"address_id":addressid,"coupon_id":0,"service_time":$("#time").html(),"message":$("textarea").val(),"count":count,"type":1,"price":price},addorderCallback1);
+					function addorderCallback1(data){
+						if(data!=null){
+							mask("提交成功");
+							_orderId=data;
+							window.location.href="{:url('index/order/payorder')}?orderId="+_orderId+"&shopname="+shopname+"&servicename="+servicename+"&totalprice="+totalnum;
+						}else{
+							mask("提交失败");
+						}
+					}
+				}else{
+					postAjax("{:url('index/order/submitorder')}",{"userid":userid,"serviceid":good_id,"address_id":addressid,"coupon_id":couponid,"service_time":$("#time").html(),"message":$("textarea").val(),"count":count,"type":2,"price":price},addorderCallback);
+					function addorderCallback(data){
+						if(data!=null){
+							mask("提交成功");
+							_orderId=data;
+							window.location.href="{:url('index/order/payorder')}?orderId="+_orderId+"&shopname="+shopname+"&servicename="+servicename+"&totalprice="+totalnum;
+						}else{
+							mask("提交失败");
+						}
+					}
+				}
+			})
+
+
+
+
+
+
+
+
+			var userid=getCookie("my_info").split("/")[0];
+			var addaddress=$("#add");
+			var userinfo=$("#userinfo");
+			var good_id=getUrlParam("good_id");
+			if(getCookie("discount")){
+				var couponid=getCookie("discount").split("/")[0];
+			}
+			var addressArr=window.localStorage.getItem("address");
+			addressArr=JSON.parse(addressArr);
+			var addressid='';
+			//改变优惠券地址
+			var total_price=$(".total-price").find("span").html();
+			$(".seller-message").find("a").attr("href","{:url('index/my/my_cash')}?order=true&totalprice="+total_price+"&good_id="+good_id);
+			//获取地址详情
+			goAjax("{:url('index/order/submitorder')}",{"userid":userid},Callback);
+			function Callback(data){
+				data=JSON.parse(data);
+				if(data!=null) {
+					$("#add").css("display", "none");
+					$("#userinfo").css("display", "block");
+					$("#userinfo").find("em").html(data["name"]);
+					$("#userinfo").find("i").html(data["phone"]);
+					$("#userinfo").find("p").html(data["addr1"]+data["addr2"]);
+					var addressArr1 = data["addr1"]+data["addr2"];
+					addressArr1=JSON.stringify(addressArr1);
+					window.localStorage.setItem("addressArr",addressArr1);
+					addressid=data["Id"];
+				}else{
+					$("#add").css("display","block");
+					$("#userinfo").css("display","none");
+				}
+			}
+			//添加优惠券信息
+			var couponprice=null;
+			if(getCookie("discount")){
+				couponprice=getCookie("discount").split("/")[1];
+			}
+			if(couponprice==null){
+				$("#couponprice").html("")
+			}else{
+				$("#couponprice").html("-"+couponprice)
+			}
+			if(addressid==""){
+				$("#add").css("display","block");
+				$("#userinfo").css("display","none");
+			}else{
+				$("#add").css("display","none");
+				$("#userinfo").css("display","block");
+			}
+			addaddress.on("click",function(){
+				window.location.href="{:url('index/myadress/addmyadress')}?order=true"
+			})
+			userinfo.on("click",function(){
+				window.location.href="{:url('index/myadress/myadress')}?order=true"
+			})
+			//添加服务信息
+			var serviceArr=window.localStorage.getItem("service");
+			//serviceArr=JSON.parse(serviceArr);
+			//$("#unit-price").html(serviceArr[1]);
+			var unitprice=$("#unit-price").html();
+			//var goodsid=serviceArr[0];
+			//$("#goodsname").html(serviceArr[2]);
+//			if(serviceArr[3]!=undefined){
+//				$(".number b").html(serviceArr[3]);
+//			}
+			//显示价钱
+			$(".total-price span").html(unitprice*$(".number b").html());
+			var totalnum=unitprice*$(".number b").html()-couponprice;
+			if(totalnum>0){
+				$(".pay-order-footer i").html(totalnum);
+			}else{
+				$(".pay-order-footer i").html(0);
+			}
+			
+			//商品数量的加减
+			$(".number i").on("click",function(){
+				var num=$(".number b").html();
+				if($(this).attr("class")=="jian"){
+					//减号	
+					num=num>1?(--num):1;
+					
+				}else if($(this).attr("class")=="jia"){
+					//加号
+					num++; 	
+				}
+				//serviceArr=[goodsid,$("#unit-price").html(),$("#goodsname").html(),num,unitprice*num];
+				//var str=JSON.stringify(serviceArr);
+				//window.localStorage.setItem("service",str);
+				$(".number b").html(num);
+				$(".total-price span").html(unitprice*num);
+				var totalnum=unitprice*num-couponprice;
+				if(totalnum>0){
+					$(".pay-order-footer i").html(totalnum);
+				}else{
+					$(".pay-order-footer i").html(0);
+				}
+				
+			})
+			//serviceArr=[goodsid,$("#unit-price").html(),$("#goodsname").html(),$(".number b").html(),$(".total-price span").html()];
+			//var str=JSON.stringify(serviceArr);
+			//window.localStorage.setItem("service",str);
+			//var servicename=JSON.parse(window.localStorage.getItem("shopname"));
+
+			//返回服务详情页面
+			$(".close").on("click",function(){
+				window.location.href="{:url('index/order/servicedetail')}?goods_id="+good_id;
+			})
+			//时间选择
+		    var nameEl = document.getElementById('chose');
+		    var jtime = document.getElementById('time');
+		    var first = []; /* 月日 */
+		    var second = []; /* 时 */
+		    var third = []; /* 分 */ 
+		    var time; //提交传值时使用
+		    var now = new Date(); // 这个算法能自动处理闰年和非闰年。2012年是闰年，所以2月有29号
+		    var firstDay = new Date(now.getFullYear(),0,1);
+		    var dateDiff = now - firstDay;
+		    var diffDays = Math.ceil(dateDiff/ (1000 * 60 * 60 * 24)); //当期时间距离第一天的天数
+		    var i = 0;
+		    while (i < (366 - diffDays)) {
+		        var day = (now.getMonth() + 1) + '月' + now.getDate() + '日';
+		        var item = {
+		            text: day,
+		            value: i
+		        }
+		        first.push(item);
+		        now = new Date(now.getTime() + 24 * 60 * 60 * 1000); // 这个是关键！！！加上一天的毫秒数效果就是把日期往后推一天
+		        i++;
+		    }
+		    for(var i = 1; i <= 24; i++){
+		        var item = {
+		            text: i + '点',
+		            value: i
+		        }
+		        second.push(item);
+		    }
+		    for(var i = 1; i <= 60; i++){
+		        var item = {
+		            text: i + '分',
+		            value: i
+		        }
+		        third.push(item);
+		    }
+		    var picker = new Picker({
+		        data: [first, second, third],
+		        selectedIndex: [0, 0, 0],
+		        title: ''
+		    });
+		    picker.on('picker.select', function (selectedVal, selectedIndex) {
+		      var text1 = first[selectedIndex[0]].text;
+		      var text2 = second[selectedIndex[1]].text;
+		      var text3 = third[selectedIndex[2]] ? third[selectedIndex[2]].text : '';
+		
+		      var timeData = text1.replace(/[^0-9]+/g, ',') .split(',');
+		      var month = plusZero(timeData[0]);
+		      var day = plusZero(timeData[1]);
+		
+		      var hourData = text2.replace(/[^0-9]+/g, ',') .split(',');
+		      var hour = plusZero(hourData[0]);
+		
+		      var minData = text3.replace(/[^0-9]+/g, ',') .split(',');
+		      var min = plusZero(minData[0]);
+		      //提交时使用此格式的时间值
+		      time = new Date().getFullYear() + '-' + month + '-' + day + ' ' + hour + ':' + min+':00';
+		      function plusZero(data){
+		           var t;
+		           return t = data < 10? ("0" + data): data;
+		      }
+		      jtime.innerHTML = time;
+		    });
+		    nameEl.addEventListener('click', function () {
+		        picker.show();
+		    });
+		})
+	</script>
+
+<div class="picker">
+  <div class="picker-mask mask-hook"></div>
+  <div class="picker-panel panel-hook">
+    <div class="picker-choose choose-hook">
+      <span class="cancel cancel-hook">取消</span>
+      <span class="confirm confirm-hook">确定</span>
+      <h1 class="picker-title"></h1>
+    </div>
+    <div class="picker-content">
+      <div class="mask-top border-1px"></div>
+      <div class="mask-bottom border-1px"></div>
+      <div class="wheel-wrapper wheel-wrapper-hook">
+          <div class="wheel wheel-hook">
+            <ul class="wheel-scroll wheel-scroll-hook">
+                <li class="wheel-item" data-val="0">11月23日</li>
+                <li class="wheel-item" data-val="1">11月24日</li>
+                <li class="wheel-item" data-val="2">11月25日</li>
+                <li class="wheel-item" data-val="3">11月26日</li>
+                <li class="wheel-item" data-val="4">11月27日</li>
+                <li class="wheel-item" data-val="5">11月28日</li>
+                <li class="wheel-item" data-val="6">11月29日</li>
+                <li class="wheel-item" data-val="7">11月30日</li>
+                <li class="wheel-item" data-val="8">12月1日</li>
+                <li class="wheel-item" data-val="9">12月2日</li>
+                <li class="wheel-item" data-val="10">12月3日</li>
+                <li class="wheel-item" data-val="11">12月4日</li>
+                <li class="wheel-item" data-val="12">12月5日</li>
+                <li class="wheel-item" data-val="13">12月6日</li>
+                <li class="wheel-item" data-val="14">12月7日</li>
+                <li class="wheel-item" data-val="15">12月8日</li>
+                <li class="wheel-item" data-val="16">12月9日</li>
+                <li class="wheel-item" data-val="17">12月10日</li>
+                <li class="wheel-item" data-val="18">12月11日</li>
+                <li class="wheel-item" data-val="19">12月12日</li>
+                <li class="wheel-item" data-val="20">12月13日</li>
+                <li class="wheel-item" data-val="21">12月14日</li>
+                <li class="wheel-item" data-val="22">12月15日</li>
+                <li class="wheel-item" data-val="23">12月16日</li>
+                <li class="wheel-item" data-val="24">12月17日</li>
+                <li class="wheel-item" data-val="25">12月18日</li>
+                <li class="wheel-item" data-val="26">12月19日</li>
+                <li class="wheel-item" data-val="27">12月20日</li>
+                <li class="wheel-item" data-val="28">12月21日</li>
+                <li class="wheel-item" data-val="29">12月22日</li>
+                <li class="wheel-item" data-val="30">12月23日</li>
+                <li class="wheel-item" data-val="31">12月24日</li>
+                <li class="wheel-item" data-val="32">12月25日</li>
+                <li class="wheel-item" data-val="33">12月26日</li>
+                <li class="wheel-item" data-val="34">12月27日</li>
+                <li class="wheel-item" data-val="35">12月28日</li>
+                <li class="wheel-item" data-val="36">12月29日</li>
+                <li class="wheel-item" data-val="37">12月30日</li>
+                <li class="wheel-item" data-val="38">12月31日</li>
+            </ul>
+          </div>
+          <div class="wheel wheel-hook">
+            <ul class="wheel-scroll wheel-scroll-hook">
+                <li class="wheel-item" data-val="1">1点</li>
+                <li class="wheel-item" data-val="2">2点</li>
+                <li class="wheel-item" data-val="3">3点</li>
+                <li class="wheel-item" data-val="4">4点</li>
+                <li class="wheel-item" data-val="5">5点</li>
+                <li class="wheel-item" data-val="6">6点</li>
+                <li class="wheel-item" data-val="7">7点</li>
+                <li class="wheel-item" data-val="8">8点</li>
+                <li class="wheel-item" data-val="9">9点</li>
+                <li class="wheel-item" data-val="10">10点</li>
+                <li class="wheel-item" data-val="11">11点</li>
+                <li class="wheel-item" data-val="12">12点</li>
+                <li class="wheel-item" data-val="13">13点</li>
+                <li class="wheel-item" data-val="14">14点</li>
+                <li class="wheel-item" data-val="15">15点</li>
+                <li class="wheel-item" data-val="16">16点</li>
+                <li class="wheel-item" data-val="17">17点</li>
+                <li class="wheel-item" data-val="18">18点</li>
+                <li class="wheel-item" data-val="19">19点</li>
+                <li class="wheel-item" data-val="20">20点</li>
+                <li class="wheel-item" data-val="21">21点</li>
+                <li class="wheel-item" data-val="22">22点</li>
+                <li class="wheel-item" data-val="23">23点</li>
+                <li class="wheel-item" data-val="24">24点</li>
+            </ul>
+          </div>
+          <div class="wheel wheel-hook">
+            <ul class="wheel-scroll wheel-scroll-hook">
+                <li class="wheel-item" data-val="1">1分</li>
+                <li class="wheel-item" data-val="2">2分</li>
+                <li class="wheel-item" data-val="3">3分</li>
+                <li class="wheel-item" data-val="4">4分</li>
+                <li class="wheel-item" data-val="5">5分</li>
+                <li class="wheel-item" data-val="6">6分</li>
+                <li class="wheel-item" data-val="7">7分</li>
+                <li class="wheel-item" data-val="8">8分</li>
+                <li class="wheel-item" data-val="9">9分</li>
+                <li class="wheel-item" data-val="10">10分</li>
+                <li class="wheel-item" data-val="11">11分</li>
+                <li class="wheel-item" data-val="12">12分</li>
+                <li class="wheel-item" data-val="13">13分</li>
+                <li class="wheel-item" data-val="14">14分</li>
+                <li class="wheel-item" data-val="15">15分</li>
+                <li class="wheel-item" data-val="16">16分</li>
+                <li class="wheel-item" data-val="17">17分</li>
+                <li class="wheel-item" data-val="18">18分</li>
+                <li class="wheel-item" data-val="19">19分</li>
+                <li class="wheel-item" data-val="20">20分</li>
+                <li class="wheel-item" data-val="21">21分</li>
+                <li class="wheel-item" data-val="22">22分</li>
+                <li class="wheel-item" data-val="23">23分</li>
+                <li class="wheel-item" data-val="24">24分</li>
+                <li class="wheel-item" data-val="25">25分</li>
+                <li class="wheel-item" data-val="26">26分</li>
+                <li class="wheel-item" data-val="27">27分</li>
+                <li class="wheel-item" data-val="28">28分</li>
+                <li class="wheel-item" data-val="29">29分</li>
+                <li class="wheel-item" data-val="30">30分</li>
+                <li class="wheel-item" data-val="31">31分</li>
+                <li class="wheel-item" data-val="32">32分</li>
+                <li class="wheel-item" data-val="33">33分</li>
+                <li class="wheel-item" data-val="34">34分</li>
+                <li class="wheel-item" data-val="35">35分</li>
+                <li class="wheel-item" data-val="36">36分</li>
+                <li class="wheel-item" data-val="37">37分</li>
+                <li class="wheel-item" data-val="38">38分</li>
+                <li class="wheel-item" data-val="39">39分</li>
+                <li class="wheel-item" data-val="40">40分</li>
+                <li class="wheel-item" data-val="41">41分</li>
+                <li class="wheel-item" data-val="42">42分</li>
+                <li class="wheel-item" data-val="43">43分</li>
+                <li class="wheel-item" data-val="44">44分</li>
+                <li class="wheel-item" data-val="45">45分</li>
+                <li class="wheel-item" data-val="46">46分</li>
+                <li class="wheel-item" data-val="47">47分</li>
+                <li class="wheel-item" data-val="48">48分</li>
+                <li class="wheel-item" data-val="49">49分</li>
+                <li class="wheel-item" data-val="50">50分</li>
+                <li class="wheel-item" data-val="51">51分</li>
+                <li class="wheel-item" data-val="52">52分</li>
+                <li class="wheel-item" data-val="53">53分</li>
+                <li class="wheel-item" data-val="54">54分</li>
+                <li class="wheel-item" data-val="55">55分</li>
+                <li class="wheel-item" data-val="56">56分</li>
+                <li class="wheel-item" data-val="57">57分</li>
+                <li class="wheel-item" data-val="58">58分</li>
+                <li class="wheel-item" data-val="59">59分</li>
+                <li class="wheel-item" data-val="60">60分</li>
+            </ul>
+          </div>
+      </div>
+    </div>
+    <div class="picker-footer footer-hook"></div>
+  </div>
+</div></body></html>

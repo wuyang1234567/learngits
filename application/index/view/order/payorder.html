@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<!-- saved from url=(0315)http://weixin.haojwt.com/web/Website/single-key/payment-order.html?shopname=%E5%AE%A4%E5%86%85%E7%94%B2%E9%86%9B%E6%B2%BB%E7%90%86(%E7%AB%8B%E5%8D%B3%E9%A2%84%E7%BA%A6)&orderprice=50&orderid=515&servicename=%E6%96%B0%E6%B2%82%E6%83%A0%E5%B3%B0%E7%8E%AF%E4%BF%9D%E7%A7%91%E6%8A%80%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8 -->
+<html class="js cssanimations"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="description" content="">
+	    <meta name="keywords" content="">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>支付订单</title>
+		<link rel="stylesheet" href="__STATIC__/index/css/amazeui.min.css">
+		<link rel="stylesheet" href="__STATIC__/index/css/hm_lwj-2.css">
+	<script type="text/javascript">
+		//调用微信JS api 支付
+		function jsApiCall()
+		{
+			WeixinJSBridge.invoke(
+					'getBrandWCPayRequest',
+					{$jsApiParameters},
+					function(res){
+						WeixinJSBridge.log(res.err_msg);
+						// alert("-----------------"+res.err_code+res.err_desc+res.err_msg);
+//						for(var key in res){
+//							alert("key="+key+"---value="+res["key"])
+//						}
+						if(res.err_msg=="get_brand_wcpay_request:ok"){
+							alert("支付成功"+res.err_msg);
+							location.href="{$Think.config.url}/myOrder";
+						}else{
+							alert("支付失败"+res.err_msg);
+						}
+
+					}
+			);
+		}
+
+		function callpay()
+		{
+			if (typeof WeixinJSBridge == "undefined"){
+				if( document.addEventListener ){
+					document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
+				}else if (document.attachEvent){
+					document.attachEvent('WeixinJSBridgeReady', jsApiCall);
+					document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+				}
+			}else{
+				jsApiCall();
+			}
+		}
+	</script>
+	<script type="text/javascript">
+		//获取共享地址
+		function editAddress()
+		{
+			WeixinJSBridge.invoke(
+					'editAddress',
+					{$editAddress},
+					function(res){
+						var value1 = res.proviceFirstStageName;
+						var value2 = res.addressCitySecondStageName;
+						var value3 = res.addressCountiesThirdStageName;
+						var value4 = res.addressDetailInfo;
+						var tel = res.telNumber;
+
+						//alert("!!!!!!!!!!!!!!"+value1 + value2 + value3 + value4 + ":" + tel);
+					}
+			);
+		}
+
+		window.onload = function(){
+			if (typeof WeixinJSBridge == "undefined"){
+				if( document.addEventListener ){
+					document.addEventListener('WeixinJSBridgeReady', editAddress, false);
+				}else if (document.attachEvent){
+					document.attachEvent('WeixinJSBridgeReady', editAddress);
+					document.attachEvent('onWeixinJSBridgeReady', editAddress);
+				}
+			}else{
+				editAddress();
+			}
+		};
+
+	</script>
+	</head>
+	<body>
+		<header data-am-widget="header" class="am-header  am-header-default am-no-layout">
+		    <div class="am-header-left am-header-nav">
+		      <a href="javascript:history.back()" class="close"></a>
+		    </div>
+		    <h1 class="am-header-title">支付订单</h1>
+		</header>
+		<div class="container">
+			<div class="pay-order-wrap">
+				<span style="display: none" id="Id">{$data['shopId']}</span>
+				<h4 id="shopname"></h4>
+				<p class="am-cf"><span id="servicename">{$data['rtitle']}</span><b>￥<em class="orderprice" id="price">{$data['price']}</em></b></p>
+			</div>
+
+			<div class="pay-order-wrap addr">
+				<h4></h4>
+				{if $addr.addr_name neq ""}
+				<p class="am-cf"><span >收件人：{$addr.addr_name}</span></p>
+				<p class="am-cf"><span >收件电话：{$addr.addr_tel}</span></p>
+				<p class="am-cf"><span >收件地址：{$addr.ar_provinves}{$addr.addr_detailed}</span></p>
+				<span style="display: none" id="addr">{$addr.Id}</span>
+				{else}
+				<p class="am-cf"><span ><a href="{:url('/addmyaddress')}">当前您没有收货地址 请自行设置</a></span></p>
+				{/if}
+			</div>
+			<div class="pay-order-wrap am-g">
+
+				<!--<div class="am-u-sm-2">-->
+					<!--<div class="am-checkbox">-->
+				      <!--<label>-->
+				        <!--<input type="checkbox">-->
+				      <!--</label>-->
+				   <!--</div>-->
+				<!--</div>-->
+			</div>
+			<div class="recharge-type-wrap pay-type-wrap">
+				<!--<div class="seller-info-top">-->
+		    		<!--<a class="left"></a><h4>选择其他支付方式</h4><a class="right"></a>-->
+		        <!--</div>-->
+		    	<div class="recharge-type am-g">
+					<div class="am-u-sm-1">
+						<img src="__STATIC__/index/img/wxcz.png">
+					</div>
+					<div class="am-u-sm-11 ">
+						<a>微信支付</a>
+					</div>
+
+		    	</div>
+				<!--<div class="recharge-type am-g">-->
+					<!--<div class="am-u-sm-1">-->
+						<!--<img src="__STATIC__/index/img/zhifubao.jpg">-->
+					<!--</div>-->
+					<!--<div class="am-u-sm-11 " onclick="alipay()">-->
+						<!--<a>支付宝支付<i></i></a>-->
+					<!--</div>-->
+				<!--</div>-->
+			</div>
+		</div>
+		<div class="pay-order-footer am-g">
+			<div class="am-u-sm-8">
+				<span>金额：<em>￥<i class="orderprice">{$data['price']}</i></em></span>
+			</div>
+			<div class="am-u-sm-4">
+				<a id="j-submit" onclick="paymoney()" style="display: block;">确定支付</a>
+			</div>
+		</div>
+		<!-- 设置完支付密码modal-->
+	   <div class="am-modal am-modal-alert " tabindex="-1" id="my-paymenttwo">
+		  <div class="am-modal-dialog cancel-modal am-cf">
+		  	<a class="cancel"></a>
+		    <div class="am-modal-hd cancel-modal-i">请输入支付密码</div>
+		    <div class="am-modal-bd  cancel-modal-t">
+		    	<form method="post">
+		    		<div class="am-form-group">
+	                    <input type="password" id="paypwd">
+	                </div>
+		    	</form>
+		    </div>
+		    <div class="am-modal-footer cancel-modal-footer">
+		      <span class="am-modal-btn" id="sure">确定</span>
+		    </div>
+		  </div>
+	   </div>
+	    <!--没设置支付密码modal-->
+       <div class="am-modal am-modal-alert " tabindex="-1" id="my-paymentone">
+		  <div class="am-modal-dialog cancel-modal am-cf">
+		  	<a class="cancel"></a>
+		    <div class="am-modal-hd cancel-modal-i">您还没设置支付密码？</div>
+		    <div class="am-modal-bd  cancel-modal-t">快去设置</div>
+		    <div class="am-modal-footer cancel-modal-footer">
+		      <span class="am-modal-btn set-paypwd">去设置</span>
+		    </div>
+		  </div>
+	   </div>
+	
+	<script type="text/javascript" src="__STATIC__/index/js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="__STATIC__/index/js/amazeui.min.js"></script>
+	<script type="text/javascript" src="__STATIC__/index/js/hm_lwj.js"></script>
+	<script type="text/javascript" src="__STATIC__/index/js/md5.js"></script>
+	<script>
+		var _url="{:url('index/my/set_pay_pwd')}";
+
+		//确定支付
+		function  paymoney(){
+			var addr=$("#addr").html();
+			if(!addr){
+				alert("请设置地址");
+				return;
+			}
+			callpay();
+//			var shopId=$("#Id").html();
+//			var price=$("#price").html()
+//			goAjax("{$Think.config.url}/weichatpay",{id:shopId,addr:addr,price:price},getuserCallback);
+//			function getuserCallback(data){
+//				console.log(data);
+//				data=JSON.parse(data);
+//
+//				if(data==1){
+//
+//
+//
+//
+//					//调用微信支付的jsapi
+//
+//
+//
+//
+////					mask("付款成功");
+//					//alert("购买成功");
+//					//location.href="{$Think.config.url}/rents";
+////						$("#price").html(data["balance"]);
+////						var pay_status=1;
+////						if(data["paypwd"]!=0){
+////							pay_status=2;
+////						}
+////						if(pay_status==2){
+////							$("#j-submit").attr("data-am-modal","{target: '#my-paymenttwo'}")
+////						}else if(pay_status==1){
+////							$("#j-submit").attr("data-am-modal","{target: '#my-paymentone'}")
+////						}
+//				}
+//			}
+		}
+
+		//得到地址 点击 进入我的地址进行修改
+		$(".addr").click(function(){
+			location.href="{$Think.config.url}/myaddress";
+		})
+	</script>
+
+</body></html>

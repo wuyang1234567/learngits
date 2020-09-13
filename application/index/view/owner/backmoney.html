@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>精品VIP卡•我的f返现</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+
+    <link rel="stylesheet" href="__STATIC__/index/index/css/mobile-style.css">
+    <link rel="stylesheet" href="__STATIC__/index/index/css/account-user.css">
+</head>
+<body style="background-color: #f7f6f6;">
+<div class="usercenter">
+
+
+    <div class="action-group">
+        <!--<a class="action-item clearfix" href="login">-->
+        <!--<div class="icon collect"></div>-->
+        <!--<div class="name">我的收藏<i></i></div>-->
+        <!--</a>-->
+        <a class="action-item clearfix" >
+            <div class="icon contract"></div>
+            <div class="name"><h3>我的返现</h3><i></i></div>
+        </a>
+        <!--<a class="action-item clearfix" href="login">-->
+        <!--<div class="icon setting"></div>-->
+        <!--<div class="name">个人设置<i></i></div>-->
+        <!--</a>-->
+    </div>
+    <div class="action-group">
+        {volist name="data" id="item"}
+        <a class="action-item clearfix" >
+            <div class="icon contract"></div>
+            <div class="name" >
+                <!--订单ID：{$item.Id};<i></i>-->
+                <span >商品：<span class="title">{$item.rtitle}</span>;</span>
+                订单价格：{$item.price}
+                <span style="color: red;text-align: right" class="detail" index="{$item.Id}" >查看详情</span>
+            </div>
+        </a>
+
+        {/volist}
+
+    </div>
+</div>
+
+<!--footer -->
+{include file="index/public/footer" /}
+<!--footer end-->
+
+</body>
+<script>
+    var titlelist=$(".title");
+    titlelist.each(function(){
+        var _title=$(this).html();
+        if(_title.length>5){
+            var _title1=_title.slice(0,5)+"...";
+            $(this).html(_title1);
+        }
+
+    })
+
+    //得到所有的查看详情的按钮 添加点击事件
+    var detaillist=$(".detail");
+    detaillist.click(function(){
+        var _index=$(this).attr("index");
+        location.href="{$Think.config.url}/detail/id/"+_index;
+    })
+</script>
+</html>

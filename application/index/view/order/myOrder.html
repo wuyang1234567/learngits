@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>精品VIP卡•我的订单</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+
+    <link rel="stylesheet" href="__STATIC__/index/index/css/mobile-style.css">
+    <link rel="stylesheet" href="__STATIC__/index/index/css/account-user.css">
+    <link rel="stylesheet" href="__STATIC__/index/bootstrap/css/bootstrap.css">
+    <script src="__STATIC__/index/js/jquery.js"></script>
+    <script src="__STATIC__/index/bootstrap/js/bootstrap.js"></script>
+</head>
+<body style="background-color: #f7f6f6;">
+<div class="usercenter">
+
+
+    <div class="action-group">
+        <!--<a class="action-item clearfix" href="login">-->
+        <!--<div class="icon collect"></div>-->
+        <!--<div class="name">我的收藏<i></i></div>-->
+        <!--</a>-->
+        <a class="action-item clearfix" >
+            <div class="icon contract" style="display: none"></div>
+            <div style="margin: 20px"><h3>我购买的商品</h3></div>
+        </a>
+        <!--<a class="action-item clearfix" href="login">-->
+        <!--<div class="icon setting"></div>-->
+        <!--<div class="name">个人设置<i></i></div>-->
+        <!--</a>-->
+    </div>
+    <div class="action-group">
+
+
+
+
+        <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
+            <ul id="myTabs" class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="false">已付款</a></li>
+                <li role="presentation" class=""><a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile" aria-expanded="true">未付款</a></li>
+
+            </ul>
+            <div id="myTabContent" class="tab-content">
+                <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
+                    {volist name="data" id="item"}
+                    {if $item.status eq 1 }
+                    <a class="action-item clearfix" >
+                        <div class="icon contract"></div>
+                        <div class="name" >
+                            <!--订单ID：{$item.Id};<i></i>-->
+                            <span >商品：<span class="title">{$item.rtitle}</span>;</span>
+                            订单价格：{$item.price}
+                            <span style="color: red;text-align: right" class="detail" index="{$item.Id}" >查看详情</span>
+                        </div>
+                    </a>
+
+                    {/if}
+                    {/volist}
+                </div>
+                <div role="tabpanel" class="tab-pane fade " id="profile" aria-labelledby="profile-tab">
+                    {volist name="data" id="item"}
+                    {if $item.status eq 0 }
+                    <a class="action-item clearfix" >
+                        <div class="icon contract"></div>
+                        <div class="name" >
+                            <!--订单ID：{$item.Id};<i></i>-->
+                            <span >商品：<span class="title">{$item.rtitle}</span>;</span>
+                            订单价格：{$item.price}
+                            <span style="color: red;text-align: right" class=" pay" index="{$item.Id}" >继续付款</span>
+                        </div>
+                    </a>
+                    {/if}
+                    {/volist}
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!--footer -->
+{include file="index/public/footer" /}
+<!--footer end-->
+
+</body>
+<script>
+    var titlelist=$(".title");
+    titlelist.each(function(){
+        var _title=$(this).html();
+        if(_title.length>5){
+            var _title1=_title.slice(0,5)+"...";
+            $(this).html(_title1);
+        }
+
+    })
+
+    //得到所有的查看详情的按钮 添加点击事件
+    var detaillist=$(".detail");
+    detaillist.click(function(){
+        var _index=$(this).attr("index");
+        location.href="{$Think.config.url}/detail/id/"+_index;
+    })
+
+    $('#myTabs a').click(function (e) {
+        e.preventDefault()
+        $(this).tab('show')
+    })
+
+
+    //未付款的继续付款
+    var paybtn=$(".pay");
+    paybtn.click(function(){
+        var _index=$(this).attr("index")+"R";
+        location.href="{$Think.config.url}/weixinpay/id/"+_index;
+    })
+</script>
+</html>

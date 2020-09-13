@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!-- saved from url=(0065)http://weixin.haojwt.com/web/Website/my/my-adress.html?order=true -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="description" content="">
+	    <meta name="keywords" content="">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>上门地址</title>
+	<script>
+		var list_url="{$Think.config.url}/editadress";
+		var del_url="{$Think.config.url}/deladress";
+	</script>
+	{load href="__STATIC__/index/css/amazeui.min.css"}
+	{load href="__STATIC__/index/css/hm_lwj-2.css"}
+	</head>
+	<body>
+		<header data-am-widget="header" class="am-header  am-header-default am-no-layout">
+		    <div class="am-header-left am-header-nav">
+		      <a id="closeBtn" class="close"></a>
+		    </div>
+		    <h1 class="am-header-title">上门地址</h1>
+		</header>
+		<div class="container">
+			<div id="my-adress">
+				{foreach $adressarr as $item}
+				<div class="my-adress-wrap" id="{$item.Id}">
+					<div class="my-adress">
+						<h4><span>{$item.addr_name}</span><i>{$item.addr_tel}</i></h4>
+						<p>{$item.ar_provinves} {$item.addr_detailed}</p>
+					</div>
+					<div class="my-adress-tool am-cf">
+						<span class="default-adress"><i index="{$item.addr_index}" ><small style="display: none;"></small></i>默认地址</span>
+						<div class="am-fr">
+							<!--<span class="edit">编辑</span>-->
+							<span class="delete">删除</span>
+						</div>
+					</div>
+				</div>
+				{/foreach}
+			</div>
+			<div class="add-adress">
+				<p style="display: none;">您还没有编辑上门地址</p>
+				<a href="{$Think.config.url}/addmyaddress"><img src="__STATIC__/index/img/jia.png" style="position: absolute; bottom: 0px;"></a>
+			</div>
+		</div>
+		{load href="__STATIC__/index/js/jquery-1.8.3.min.js"}
+		{load href="__STATIC__/index/js/hm_lwj.js"}
+		{load href="__STATIC__/index/js/template.js"}
+		{load href="__STATIC__/index/js/myadress.js"}
+	<script id="my-adress-wrap" type="text/html">
+
+			<div class="my-adress-wrap" id="{{value.id}}">
+				<div class="my-adress">
+					<h4><span>{{value.contacts}}</span><i>{{value.mobile}}</i></h4>
+					<p>{{value.province}} {{value.city}} {{value.area}} {{value.content}}</p>
+				</div>
+				<div class="my-adress-tool am-cf">
+					<span class="default-adress"><i index="{{value.is_show}}"><small></small></i>默认地址</span>
+					<div class="am-fr">
+						<!--<span class="edit">编辑</span>-->
+						<span class="delete">删除</span>
+					</div>
+				</div>
+			</div>
+
+	</script>
+	<script>
+		//编辑地址
+		$(".edit").on("click",function(){
+			addressid=$(this).parents(".my-adress-wrap").attr("id");
+			var user=$(this).parents(".my-adress-wrap").find(".my-adress h4 span").html();
+			var ipone=$(this).parents(".my-adress-wrap").find(".my-adress h4 i").html();
+			var content=$(this).parents(".my-adress-wrap").find(".my-adress p").html();
+			var arr=content.split(" ");
+			var addressurl="addmyadress?province="+arr[0]+"&city="+arr[1]+"&area="+arr[2]+"&content="+arr[3]+"&user="+user+"&ipone="+ipone+"&addressid="+addressid;
+			location.href='{:url("'+addressurl+'")}';
+		})
+
+		$("#closeBtn").click(function(){
+			location.href="{$Think.config.url}/account/user";
+		})
+	</script>
+</body></html>
